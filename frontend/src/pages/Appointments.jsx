@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { assets } from "../assets/assets";
+import RelatedDoctors from "../components/RelatedDoctors";
 
 const Appointments = () => {
   const { docId } = useParams();
@@ -21,7 +22,7 @@ const Appointments = () => {
 
     for (let i = 0; i < 7; i++) {
 
-      
+
       //getting date with index
       let currentDate = new Date(today);
       currentDate.setDate(today.getDate() + i);
@@ -151,7 +152,7 @@ const Appointments = () => {
           <div className="flex gap-3 items-center w-full overflow-x-scroll mt-4">
             {docSlots.length &&
               docSlots.map((item, index) => (
-                <div
+                <div onClick={()=>setSlotIndex(index)}
                   className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${
                     slotIndex === index
                       ? "bg-primary text-white"
@@ -164,7 +165,22 @@ const Appointments = () => {
                 </div>
               ))}
           </div>
+          <div className="flex gap-3 items-center w-full overflow-x-scroll mt-4">
+            {docSlots.length && docSlots[slotIndex].map((item,index)=>(
+              <p onClick={()=>setSlotTime(item.time)} className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer  ${
+                    item.time === slotTime
+                      ? "bg-primary text-white"
+                      : "text-gray-400 border border-gray-300"
+                  }`}key={index}>
+                {item.time.toLowerCase()}
+              </p>
+            ))}
+          </div>
+          <button className="bg-primary text-white text-sm font-light px-14 py-3 rounded-full my-6"> Book an appoinment</button>
         </div>
+        {/* Lising Related Doctors */}
+            <RelatedDoctors docId={docId} speciality={docInfo.speciality}/>
+
       </div>
     )
   );
