@@ -57,10 +57,24 @@ const AddDoctor = () => {
 
       if (data.success) {
         toast.success(data.message);
+
+        setDocImg(false)
+        setName('')
+        setEmail('')
+        setPassword('')
+        setFees('')
+        setAbout('')
+        setDegree('')
+        setAddress1('')
+        setAddress2('')
+
       } else {
         toast.error(data.message);
       }
-    } catch (error) {}
+    } catch (error) {
+        toast.error(data.message);
+        console.log(error)
+    }
   };
 
   return (
@@ -215,7 +229,7 @@ const AddDoctor = () => {
         </div>
         <button
           type="submit"
-          className="bg-blue-500 px-10 py-3 mt-4 text-white rounded-full"
+          className="bg-blue-500 px-10 py-3 mt-4 text-white rounded-full cursor-pointer"
         >
           Add doctor
         </button>
