@@ -23,30 +23,3 @@ const authAdmin = async (req, res, next) => {
 };
 
 export default authAdmin;
-/*import jwt from "jsonwebtoken";
-
-const authAdmin = async (req, res, next) => {
-  try {
-    const authHeader = req.headers.authorization; // expects 'Bearer <token>'
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      return res.status(401).json({ success: false, message: "Not Authorized" });
-    }
-
-    const token = authHeader.split(" ")[1]; // extract token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    // You can store decoded info in req.user if needed
-    req.admin = decoded;
-
-    next();
-  } catch (error) {
-    console.log(error);
-    res.status(401).json({ success: false, message: "Not Authorized" });
-  }
-};
-
-export default authAdmin; */
-
-
-
-
