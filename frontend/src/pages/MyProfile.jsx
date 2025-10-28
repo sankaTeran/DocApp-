@@ -1,23 +1,20 @@
 import React, { useState } from "react";
-import { assets } from "../assets/assets";
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
+
+
 
 const MyProfile = () => {
-  const [userData, setUserData] = useState({
-    name: "Edward Banz",
-    image: assets.profile_pic,
-    email: "edwardbanz@gmail.com",
-    phone: "+947823456723",
-    address: {
-      line1: "57th Cross,Richmand",
-      line2: "Circle, Church RD, London",
-    },
-    gender: "Male",
-    dob: "2000-01-20",
-  });
-
+  
+  const {userData,setUserData,token,backendUrl,} = useContext(AppContext)
   const [isEdit, setIsEdit] = useState(true);
+  const [image, setimage] = useState(false)
 
-  return (
+  const updateuserprofileData = async () => {
+
+  }
+
+  return userData && (
     <div className="max-w-lg flex flex-col gap-2 text-sm">
       <img className="w-36 rounded" src={userData.image} alt="" />
 
@@ -130,3 +127,18 @@ const MyProfile = () => {
 };
 
 export default MyProfile;
+
+
+
+// const [userData, setUserData] = useState({
+//     name: "Edward Banz",
+//     image: assets.profile_pic,
+//     email: "edwardbanz@gmail.com",
+//     phone: "+947823456723",
+//     address: {
+//       line1: "57th Cross,Richmand",
+//       line2: "Circle, Church RD, London",
+//     },
+//     gender: "Male",
+//     dob: "2000-01-20",
+//   });
